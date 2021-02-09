@@ -13,7 +13,7 @@ export default function Home() {
         <h1 className={styles.title}>
           Fastfeedback
         </h1>
-        <h2>Hello brahim</h2>
+        <h2>Great work</h2>
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
