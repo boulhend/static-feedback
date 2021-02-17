@@ -10,7 +10,7 @@ import {
 import getAllFeedback, { getAllSites } from '../../lib/db-admin';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../lib/auth';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { createFeedback } from '../../lib/db';
 import { formatRFC7231 } from 'date-fns';
 export default function Sitefeedback({ Inititalfeedback }) {
