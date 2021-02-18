@@ -10,15 +10,17 @@ export default function Home() {
     <div>
       <Head>
         <title>Create Next App</title>
-        {/* <script
-          dangerouslySetInnerHTML={{
-            __html: `
+        {
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
           if (document.cookie && document.cookie.includes('fast-feedback-auth')) {
             window.location.href = "/dashboard"
           }
         `
-          }}
-        /> */}
+            }}
+          />
+        }
       </Head>
 
       <Flex
