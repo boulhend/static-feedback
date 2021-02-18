@@ -10,7 +10,7 @@ export default function Home() {
     <div>
       <Head>
         <title>Create Next App</title>
-        <script
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: `
           if (document.cookie && document.cookie.includes('fast-feedback-auth')) {
@@ -18,7 +18,7 @@ export default function Home() {
           }
         `
           }}
-        />
+        /> */}
       </Head>
 
       <Flex
