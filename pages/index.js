@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <div>
       <Head>
+        <title>Fast feedback</title>
         {
           <script
             dangerouslySetInnerHTML={{
