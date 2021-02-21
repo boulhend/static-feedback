@@ -7,25 +7,27 @@ import {
   Heading,
   Text
 } from '@chakra-ui/react';
-import getAllFeedback, { getAllSites } from '../../lib/db-admin';
+import getAllFeedback, { getAllSites, getSite } from '../../lib/db-admin';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../lib/auth';
 import { useRef, useState } from 'react';
 import { createFeedback } from '../../lib/db';
 import { formatRFC7231 } from 'date-fns';
-export default function Sitefeedback({ Inititalfeedback }) {
+export default function Sitefeedback({ Inititalfeedback, siteName }) {
   const router = useRouter();
   const auth = useAuth();
   const inputRef = useRef('');
   const [allfeedback, setAllfeedback] = useState(Inititalfeedback);
-  
-  const onSubmit = (e) => {
+  const siteId = router.query.siteId;
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     const newFeedback = {
       author: auth.user.name,
       authorId: auth.user.uid,
+      siteName,
       createdAt: formatRFC7231(new Date()),
-      siteId: router.query.siteId,
+      siteId,
       text: inputRef.current.value,
       provider: auth.user.provider,
       status: 'pending'
@@ -46,13 +48,13 @@ export default function Sitefeedback({ Inititalfeedback }) {
           <FormLabel>Comment</FormLabel>
           <Input placeholder="Feedback ..." type="texArea" ref={inputRef} />
           <Button type="submit" fontWeight="medium" mt={3}>
-            Add commnet
+            Add comment
           </Button>
         </FormControl>
       </Box>
       <Box py={4}>
-        {allfeedback.map((feedcback, index) => (
-          <Box key={index}>
+        {allfeedback.map((feedcback) => (
+          <Box key={feedcback.id}>
             <Heading fontSize="lg">{feedcback.author}</Heading>
             <Text>{feedcback.createdAt}</Text>
             <Text my={5}>{feedcback.text}</Text>
@@ -66,11 +68,13 @@ export default function Sitefeedback({ Inititalfeedback }) {
 export async function getStaticProps({ params }) {
   const siteId = params.siteId;
   const feedback = await getAllFeedback(siteId);
+  const siteName = await getSite(siteId);
   return {
     props: {
-      Inititalfeedback: feedback
+      Inititalfeedback: feedback,
+      siteName
     },
-    revalidate:1
+    revalidate: 1
   };
 }
 export async function getStaticPaths() {

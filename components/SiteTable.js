@@ -1,14 +1,5 @@
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Box,
-  Link
-} from '@chakra-ui/react';
-import NextLink from 'next/link'
+import { Table, Thead, Tbody, Tr, Th, Td, Box, Link } from '@chakra-ui/react';
+import NextLink from 'next/link';
 export default function SiteTable({ sites }) {
   return (
     <Table
@@ -30,18 +21,14 @@ export default function SiteTable({ sites }) {
       <Tbody>
         {sites.map((site) => (
           <Box as="tr" key={site.id}>
-            <Td fontWeight="medium">
-              {site.name}
-            </Td>
+            <Td fontWeight="medium">{site.name}</Td>
+            <Td>{site.link}</Td>
             <Td>
-              {site.link}
+              <NextLink href="/p/[siteId]" as={`/p/${site.id}`} passHref>
+                <Link fontWeight="medium" color="blue.600" _active={{border:"none"}} _focus={{border:"none"}}>View feedback</Link>
+              </NextLink>
             </Td>
-            <Td>
-              <NextLink href="/p/[siteId]" as={`/p/${site.id}`} passHref><Link>View feedback</Link></NextLink>
-            </Td>
-            <Td>
-              {site.createdAt}
-            </Td>
+            <Td>{site.createdAt}</Td>
           </Box>
         ))}
       </Tbody>

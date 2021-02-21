@@ -1,8 +1,8 @@
-import { Button, Flex, Link } from '@chakra-ui/react';
+import { Button, Flex, Link, Stack } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Head from 'next/head';
 import { useAuth } from '../lib/auth';
-import { Logo } from '../styles/theme';
+import { Logo,Github,Google } from '../styles/theme';
 export default function Home() {
   const auth = useAuth();
 
@@ -25,14 +25,53 @@ export default function Home() {
 
       <Flex
         direction="column"
-        w="400px"
         align="center"
         justify="center"
         margin="auto"
+        height="100vh"
       >
-        <Logo boxSize={60} color="black" />
+        <Logo boxSize={20} color="black" />
         {!auth.user ? (
-          <Button onClick={(e) => auth.signinWithGithub()}>Sign In</Button>
+          <>
+            <Button
+              variant="solid"
+              size="md"
+              color="white"
+              backgroundColor="gray.900"
+              mt={3}
+              _hover={{ bg: 'gray.700' }}
+              _active={{
+                bg: 'gray.800',
+                transform: 'sclae(0.95)'
+              }}
+              leftIcon={<Github fill="white" mb={1} mr={1}/>}
+              onClick={() => auth.signinWithGithub()}
+              px={8}
+              py={6}
+              fontSize="lg"
+            >
+              Sign In With Github
+            </Button>
+            <Button
+              variant="solid"
+              size="md"
+              color="gray.900"
+              backgroundColor="gray.100"
+              mt={3}
+              _hover={{ bg: 'gray.200' }}
+              _active={{
+                bg: 'gray.300',
+                transform: 'sclae(0.95)'
+              }}
+              leftIcon={<Google mb={1} mr={1}/>}
+              onClick={() => auth.signinWithGoogle()}
+              px={8}
+              py={6}
+              fontSize="lg"
+            >
+              Sign In With Google
+            </Button>
+          </>
         ) : (
           <>
             <NextLink href="/dashboard" passHref>
