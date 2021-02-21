@@ -1,9 +1,13 @@
 import { AuthProvider } from '../lib/auth';
 import { CSSReset, ChakraProvider } from '@chakra-ui/react';
 import { css, Global } from '@emotion/react';
+import Head from 'next/head';
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
+      <Head>
+        <title>Fast feedback</title>
+      </Head>
       <AuthProvider>
         <CSSReset />
         <Global
@@ -11,7 +15,7 @@ function MyApp({ Component, pageProps }) {
             * {
               margin: 0;
               padding: 0;
-              box-sizing: border-box; 
+              box-sizing: border-box;
             }
             html {
               min-width: 360px;

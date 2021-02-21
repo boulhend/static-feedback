@@ -1,15 +1,14 @@
-import { Button, Flex, Link, Stack } from '@chakra-ui/react';
+import { Button, Flex, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Head from 'next/head';
 import { useAuth } from '../lib/auth';
-import { Logo,Github,Google } from '../styles/theme';
+import { Logo, Github, Google } from '../styles/theme';
 export default function Home() {
   const auth = useAuth();
 
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
         {
           <script
             dangerouslySetInnerHTML={{
@@ -44,7 +43,7 @@ export default function Home() {
                 bg: 'gray.800',
                 transform: 'sclae(0.95)'
               }}
-              leftIcon={<Github fill="white" mb={1} mr={1}/>}
+              leftIcon={<Github fill="white" mb={1} mr={1} />}
               onClick={() => auth.signinWithGithub()}
               px={8}
               py={6}
@@ -63,7 +62,7 @@ export default function Home() {
                 bg: 'gray.300',
                 transform: 'sclae(0.95)'
               }}
-              leftIcon={<Google mb={1} mr={1}/>}
+              leftIcon={<Google mb={1} mr={1} />}
               onClick={() => auth.signinWithGoogle()}
               px={8}
               py={6}

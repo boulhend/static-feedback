@@ -46,7 +46,7 @@ export default function Sitefeedback({ Inititalfeedback, siteName }) {
       <Box as="form" onSubmit={onSubmit}>
         <FormControl id="email" my={8}>
           <FormLabel>Comment</FormLabel>
-          <Input placeholder="Feedback ..." type="texArea" ref={inputRef} />
+          <Input placeholder="Feedback ..." type="texArea" refs={inputRef} />
           <Button type="submit" fontWeight="medium" mt={3}>
             Add comment
           </Button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Link, Stack, Avatar } from '@chakra-ui/react';
+import { Flex, Link, Stack, Avatar, LinkBox } from '@chakra-ui/react';
 import { Logo } from '../styles/theme';
 import { useAuth } from '../lib/auth';
 import NextLink from 'next/link';
@@ -17,7 +17,9 @@ const DashboardShell = ({ children }) => {
       >
         <Stack spacing={5} isInline alignItems="center">
           <NextLink href="/" passHref>
-            <Logo cursor="pointer" color="black" width={10} height={8} />
+            <Link>
+              <Logo cursor="pointer" color="black" width={10} height={8} />
+            </Link>
           </NextLink>
           <NextLink href="/feedback" passHref>
             <Link>Feedback</Link>
