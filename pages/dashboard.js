@@ -8,7 +8,7 @@ import { useAuth } from '../lib/auth';
 import SiteTableHeader from '../components/SiteTableHeader';
 export default function Dashboard() {
   const { user } = useAuth();
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     user ? ['/api/sites', user.token] : null,
     fetcher
   );
