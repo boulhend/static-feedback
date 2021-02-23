@@ -47,13 +47,15 @@ export default function Sitefeedback({ Inititalfeedback, siteName }) {
         <FormControl id="email" my={8}>
           <FormLabel>Comment</FormLabel>
           <Input placeholder="Feedback ..." type="texArea" ref={inputRef} />
-          <Button type="submit" fontWeight="medium" mt={3}>
-            Add comment
-          </Button>
+          {router.isFallback && (
+            <Button type="submit" fontWeight="medium" mt={3}>
+              Add comment
+            </Button>
+          )}
         </FormControl>
       </Box>
       <Box py={4}>
-        {allfeedback.map((feedcback) => (
+        {allfeedback && allfeedback.map((feedcback) => (
           <Box key={feedcback.id}>
             <Heading fontSize="lg">{feedcback.author}</Heading>
             <Text>{feedcback.createdAt}</Text>
@@ -86,6 +88,6 @@ export async function getStaticPaths() {
   }));
   return {
     paths,
-    fallback: false
+    fallback: true
   };
 }

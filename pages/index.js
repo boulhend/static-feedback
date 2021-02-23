@@ -7,7 +7,6 @@ import getAllFeedback from '../lib/db-admin';
 const siteId = 'ZSnYVWW5R8nIrwRlD55X';
 export async function getStaticProps({ params }) {
   const feedback = await getAllFeedback(siteId);
-  console.log(feedback);
   return {
     props: {
       allFeeedback: feedback || []
@@ -35,7 +34,16 @@ export default function Home({ allFeeedback }) {
         } */}
       </Head>
       <Flex flexDirection="column" width="100%">
-        <Flex direction="column" align="flex-start" justify="center" margin="auto" backgroundColor="gray.100" py="50px" pl="250px" width="100%">
+        <Flex
+          direction="column"
+          align="flex-start"
+          justify="center"
+          margin="auto"
+          backgroundColor="gray.100"
+          py="50px"
+          pl="250px"
+          width="100%"
+        >
           <Logo boxSize={10} color="black" />
           <Text fontSize="lg" width="60%" my={5}>
             Fast Feedback was built as part of React 2025. It's the easiest way
@@ -107,9 +115,15 @@ export default function Home({ allFeeedback }) {
         <Box py={4} width="70%" margin="auto">
           {allFeeedback.map((feedcback) => (
             <Box key={feedcback.id}>
-              <Heading fontSize="md" mt={6}>{feedcback.author}</Heading>
-              <Text fontSize="small" color="gray.600">{feedcback.createdAt}</Text>
-              <Text mt={5} mb={8}>{feedcback.text}</Text>
+              <Heading fontSize="md" mt={6}>
+                {feedcback.author}
+              </Heading>
+              <Text fontSize="small" color="gray.600">
+                {feedcback.createdAt}
+              </Text>
+              <Text mt={5} mb={8}>
+                {feedcback.text}
+              </Text>
               <Box borderBottom="1px" color="gray.200" />
             </Box>
           ))}
