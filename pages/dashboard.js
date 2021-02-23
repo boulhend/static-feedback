@@ -6,6 +6,8 @@ import useSWR from 'swr';
 import fetcher from '../utils/fetcher';
 import { useAuth } from '../lib/auth';
 import SiteTableHeader from '../components/SiteTableHeader';
+
+
 export default function Dashboard() {
   const { user } = useAuth();
   const { data } = useSWR(
