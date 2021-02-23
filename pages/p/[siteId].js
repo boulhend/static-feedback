@@ -32,6 +32,7 @@ export default function Sitefeedback({ Inititalfeedback, siteName }) {
       provider: auth.user.provider,
       status: 'pending'
     };
+    inputRef.current.value='';
     setAllfeedback([newFeedback, ...allfeedback]);
     createFeedback(newFeedback);
   };
