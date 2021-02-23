@@ -47,11 +47,11 @@ export default function Sitefeedback({ Inititalfeedback, siteName }) {
         <FormControl id="email" my={8}>
           <FormLabel>Comment</FormLabel>
           <Input placeholder="Feedback ..." type="texArea" ref={inputRef} />
-          {router.isFallback && (
-            <Button type="submit" fontWeight="medium" mt={3}>
+          
+            <Button type="submit" fontWeight="medium" mt={3} isDisabled={router.isFallback}>
               Add comment
             </Button>
-          )}
+          
         </FormControl>
       </Box>
       <Box py={4}>
