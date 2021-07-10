@@ -6,11 +6,11 @@ import fetcher from '../utils/fetcher';
 import { useAuth } from '../lib/auth';
 import DashboardShell from '../components/DashboardShell';
 import FeedbackTableHeader from '../components/FeedbackTableHeader';
-export default function Dashboard() {
+export default function Feedback() {
   const { user } = useAuth();
   const { data } = useSWR(user ? ['/api/feedback', user.token] : null, fetcher);
 
-  if (!data || data === undefined) {
+  if (!data) {
     return (
       <DashboardShell>
         <FeedbackTableHeader />

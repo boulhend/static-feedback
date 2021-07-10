@@ -35,7 +35,10 @@ export default function Addsitemodal({ text }) {
       userId: auth.user.uid,
       createdAt: formatRFC7231(new Date()),
       name,
-      link
+      link,
+      icons:'show',
+      timestamp:'show',
+      ratings:'show'
     };
 
     const { id } = createSite(newSite);

@@ -11,7 +11,7 @@ export default function SiteTable({ sites }) {
     >
       <Thead color="gray.500" background="gray.200">
         <Tr>
-          <Th>Name</Th>
+          <Th>Site Name</Th>
           <Th>Site Link</Th>
           <Th>Feedback Link</Th>
           <Th>Date Added</Th>
@@ -21,11 +21,33 @@ export default function SiteTable({ sites }) {
       <Tbody>
         {sites.map((site) => (
           <Box as="tr" key={site.id}>
-            <Td fontWeight="medium">{site.name}</Td>
+            <Td fontWeight="medium">
+              <NextLink href="/site/[siteId]" as={`/site/${site.id}`} passHref>
+                <Link
+                  fontWeight="medium"
+                  color="blue.600"
+                  _active={{ border: 'none' }}
+                  _focus={{ border: 'none' }}
+                >
+                  {site.name}
+                </Link>
+              </NextLink>
+            </Td>
             <Td>{site.link}</Td>
             <Td>
-              <NextLink href="/p/[siteId]" as={`/p/${site.id}`} passHref>
-                <Link fontWeight="medium" color="blue.600" _active={{border:"none"}} _focus={{border:"none"}}>View feedback</Link>
+              <NextLink
+                href="/feedback/[siteId]"
+                as={`/feedback/${site.id}`}
+                passHref
+              >
+                <Link
+                  fontWeight="medium"
+                  color="blue.600"
+                  _active={{ border: 'none' }}
+                  _focus={{ border: 'none' }}
+                >
+                  Edit feedback
+                </Link>
               </NextLink>
             </Td>
             <Td>{site.createdAt}</Td>

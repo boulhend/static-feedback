@@ -1,8 +1,10 @@
-import { Table, Thead, Tbody, Tr, Th, Td, Box, Switch } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 import DeleteFeedbackModal from './DeleteFeedbackModal';
 import { useState } from 'react';
+import FeedbackRow from './FeedbackRow';
 export default function Feedbacktable({ allFeedback }) {
   const [tableFeedback, setTablefeedback] = useState(allFeedback);
+
   return (
     <Table
       variant="simple"
@@ -13,26 +15,16 @@ export default function Feedbacktable({ allFeedback }) {
     >
       <Thead color="gray.500" background="gray.200">
         <Tr>
-          <Th>Name</Th>
+          <Th>Site Name</Th>
           <Th>Feedback</Th>
           <Th>Route</Th>
           <Th>Visible</Th>
-          <Th>{''}</Th>
+          <Th>Delete</Th>
         </Tr>
       </Thead>
       <Tbody>
         {tableFeedback.map((feedback) => (
-          <Box as="tr" key={feedback.id}>
-            <Td fontWeight="medium">{feedback.siteName}</Td>
-            <Td>{feedback.text}</Td>
-            <Td>{'/'}</Td>
-            <Td>
-              <Switch
-                variant="ghost"
-                colorScheme="green"
-                defaultChecked={feedback.status === 'active'}
-              />
-            </Td>
+          <FeedbackRow key={feedback.id} {...feedback}>
             <Td>
               <DeleteFeedbackModal
                 feedbackId={feedback.id}
@@ -40,7 +32,7 @@ export default function Feedbacktable({ allFeedback }) {
                 setTablefeedback={setTablefeedback}
               />
             </Td>
-          </Box>
+          </FeedbackRow>
         ))}
       </Tbody>
     </Table>

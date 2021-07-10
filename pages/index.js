@@ -1,12 +1,12 @@
 import { Button, Flex, Link, Box, Heading, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import Head from 'next/head';
 import { useAuth } from '../lib/auth';
 import { Logo, Github, Google } from '../styles/theme';
 import getAllFeedback from '../lib/db-admin';
 const siteId = 'ZSnYVWW5R8nIrwRlD55X';
 export async function getStaticProps({ params }) {
   const feedback = await getAllFeedback(siteId);
+  console.log(feedback);
   return {
     props: {
       allFeeedback: feedback || []
@@ -19,20 +19,19 @@ export default function Home({ allFeeedback }) {
 
   return (
     <Box>
-      <Head>
-        <title>Fast feedback</title>
-        {/* {
+      {/*    <Head>
+        {
           <script
             dangerouslySetInnerHTML={{
               __html: `
           if (document.cookie && document.cookie.includes('fast-feedback-auth')) {
-            window.location.href = "/"
+            window.location.href = "/sites"
           }
         `
             }}
           />
-        } */}
-      </Head>
+        }
+      </Head> */}
       <Flex flexDirection="column" width="100%">
         <Flex
           direction="column"
@@ -41,7 +40,7 @@ export default function Home({ allFeeedback }) {
           margin="auto"
           backgroundColor="gray.100"
           py="50px"
-          pl="250px"
+          pl="230px"
           width="100%"
         >
           <Logo boxSize={10} color="black" />
@@ -95,38 +94,45 @@ export default function Home({ allFeeedback }) {
             </Flex>
           ) : (
             <>
-              <NextLink href="/dashboard" passHref>
+              <NextLink href="/sites" passHref>
                 <Link
-                  backgroundColor="teal"
                   textDecoration="none"
-                  px={4}
+                  fontSize="medium"
+                  px={7}
                   py={2}
                   color="white"
+                  backgroundColor="gray.900"
                   borderRadius={4}
-                  _hover={{ backgroundColor: 'teal.500' }}
+                  _hover={{ backgroundColor: 'gray.700' }}
                   fontWeight="medium"
+                  fontSize="medium"
+                  mt={6}
                 >
-                  View Dashboard
+                  View Sites
                 </Link>
               </NextLink>
             </>
           )}
         </Flex>
         <Box py={4} width="70%" margin="auto">
-          {allFeeedback.map((feedcback) => (
-            <Box key={feedcback.id}>
-              <Heading fontSize="md" mt={6}>
-                {feedcback.author}
-              </Heading>
-              <Text fontSize="small" color="gray.600">
-                {feedcback.createdAt}
-              </Text>
-              <Text mt={5} mb={8}>
-                {feedcback.text}
-              </Text>
-              <Box borderBottom="1px" color="gray.200" />
-            </Box>
-          ))}
+          {allFeeedback.length === 0 ? (
+            <Text>No feedback yet</Text>
+          ) : (
+            allFeeedback.map((feedcback) => (
+              <Box key={feedcback.id}>
+                <Heading fontSize="md" mt={6}>
+                  {feedcback.author}
+                </Heading>
+                <Text fontSize="small" color="gray.600">
+                  {feedcback.createdAt}
+                </Text>
+                <Text mt={5} mb={8}>
+                  {feedcback.text}
+                </Text>
+                <Box borderBottom="1px" color="gray.200" />
+              </Box>
+            ))
+          )}
         </Box>
       </Flex>
     </Box>
